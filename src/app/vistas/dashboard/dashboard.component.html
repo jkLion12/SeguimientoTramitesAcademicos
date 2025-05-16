@@ -1,0 +1,324 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <!-- agregar algunas cositas del dashboard de admin lt -->
+    <!-- Small boxes (Stat box) -->
+    <section class="content">
+
+      <div class="content-fluid">
+          <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>{{cantidad_tramites}}</h3>
+      
+                    <p>Trámites solicitados</p>
+                  </div>
+                  <div class="icon">
+                    <!-- <i class="ion ion-document"></i> -->
+                    <i class="ion ion-document-text"></i>
+
+                  </div>
+                  <a routerLink="/tramites" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3>{{ porcentajecompletado }}<sup style="font-size: 20px">%</sup></h3>
+      
+                    <p>Trámites Completados</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+                  <a routerLink="/progreso_tramite" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>{{cantidad_user}}</h3>
+      
+                    <p>Usuarios Registrados</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a routerLink="/usuarios" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>{{cantidad_estudiantes}}</h3>
+      
+                    <p>Estudiantes registrados</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <a routerLink="/estudiantes" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+              3
+              <!-- ./col -->
+            </div>
+      </div>
+      <!-- agregar algunas cositas del dashboard de admin lt -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+
+            <!-- BARRAS CHARD MUJERES Y HOMBRES -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE TRÁMITES POR TIPO</h3>
+
+                <div class="card-tools">
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                      <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                      <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                      <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                      <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                    </div> 
+                  </div> -->
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barCanvas" style="min-height: 300px; height: 350px; max-height: 350px; max-width: 100%;"></canvas> <!-- Gráfico de barras -->
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <!-- MUJERES HOMBRES SOLICITARON -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE TRÁMITES POR MES</h3>
+
+                <div class="card-tools">
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                      <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                      <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                      <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                      <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                    </div> 
+                  </div> -->
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="lineCanvas" style="min-height: 300px; height: 350px; max-height: 350px; max-width: 100%;"></canvas> <!-- Gráfico de líneas -->
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+        
+            <!-- PASTEL CHART -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">PORCENTAJES DE TRÁMITES TOTALES</h3>
+                <div class="card-tools">
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                      <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                      <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                      <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                      <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                    </div> 
+                  </div> -->
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieCanvas" style="min-height: 300px; height: 3500px; max-height: 250px; max-width: 100%;"></canvas> <!-- Gráfico de tarta -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE TRÁMITES POR ESTADO</h3>
+
+                <div class="card-tools">
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                      <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                      <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                      <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                      <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                    </div> 
+                  </div> -->
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" style="color: #007bff7e">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="polarCanvas" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+    
+          </div>
+              
+              <!-- /.col (LEFT) -->
+              <div class="col-md-6">
+
+                <div class="col-lg-12 col-3">
+                  <!-- small box -->
+                  <div class="small-box bg-secondary">
+                    <div class="inner">
+                      <H5>FILTROS POR AÑO:</H5>
+                    </div>
+                    <a (click)="filtrarPorAnio(2023)" class="small-box-footer" style="color: black;"><i class="fas fa-arrow-circle-right">2023</i></a>
+                    <a (click)="filtrarPorAnio(2024)" class="small-box-footer" style="color: black;"><i class="fas fa-arrow-circle-right">2024</i></a>
+                    <a (click)="filtrarPorAnio(2025)" class="small-box-footer" style="color: black;"><i class="fas fa-arrow-circle-right">2025</i></a>
+                  </div>
+                </div>
+
+                <!-- BARRAS CHART Tramites por sexo y mes-->
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">ANÁLISIS MENSUAL DE TRÁMITES POR GÉNERO</h3>
+                    <div class="card-tools">
+                      <!-- <div class="btn-group">
+                        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                          <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                          <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                          <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                          <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                        </div> 
+                      </div> -->
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="barCanvasTwo" style="min-height: 300px; height: 350px; max-height: 350px; max-width: 100%;"></canvas> <!-- Nuevo gráfico de barras -->
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+    
+    
+                <!-- STACKED BAR CHART (radar)-->
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">CANTIDAD DE TRÁMITES POR ESCUELA</h3>
+    
+                    <div class="card-tools">
+                      <!-- <div class="btn-group">
+                        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                          <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a (click)="filtrarPorAnio(2025)" class="dropdown-item" style="color: black;">2025</a>
+                          <a (click)="filtrarPorAnio(2024)" class="dropdown-item" style="color: black;">2024</a>
+                          <a (click)="filtrarPorAnio(2023)" class="dropdown-item" style="color: black;">2023</a>
+                          <a (click)="filtrarPorAnio(2022)" class="dropdown-item" style="color: black;">2022</a>
+                        </div> 
+                      </div> -->
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <canvas id="radarCanvas" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- AREA CHART (calendario)-->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">CALENDARIO</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <mat-card class="demo-inline-calendar-card">
+                        <mat-calendar [(selected)]="selected"></mat-calendar>
+                        </mat-card>
+                      </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->   
+    
+              </div>
+              <!-- /.col (RIGHT) -->
+        </div>
+            <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+</div>
+<app-footer></app-footer>

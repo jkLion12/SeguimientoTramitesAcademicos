@@ -1,0 +1,72 @@
+.nav-item.active {
+  background-color: #007bff; /* Cambia el fondo a azul cuando esté activo */
+  border-radius: 0.5em;
+  color: white; /* Cambia el color del texto a blanco cuando esté activo */
+  p{
+    color: white;
+    
+  }
+
+  i{
+    color: white;
+  }
+
+  @keyframes vibrate {
+    0% { transform: translate(0); }
+    // 20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    // 60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    // 100% { transform: translate(0); }
+  }
+  
+  .vibrate {
+    animation: vibrate 2s infinite;
+  }
+}
+
+a{
+  text-decoration: none;
+}
+
+
+.form-control-sidebar::placeholder {
+  color: #999; /* Color del placeholder */
+}
+
+
+/* Estilos del contenedor */
+.info {
+  /* Estilos del contenedor que pueden variar según tus necesidades */
+  overflow: hidden; /* Oculta el texto que se sale del contenedor */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  width: 200px; /* Ancho del contenedor, ajusta según tu diseño */
+}
+
+/* Animación */
+@keyframes moverTexto {
+  from {
+    transform: translateX(0); /* Comienza desde la posición actual */
+  }
+  to {
+    transform: translateX(-20%); /* Se mueve completamente hacia la izquierda */
+  }
+}
+
+/* Estilos para el texto */
+#textoAnimado {
+  display: inline-block; /* Hace que el texto se comporte como bloque en línea */
+  animation: moverTexto 5s linear infinite; /* Aplica la animación */
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+
+.brand-link{
+  .brand-text{
+    text-align: center;
+    margin-left: 0.5em;
+  }
+}

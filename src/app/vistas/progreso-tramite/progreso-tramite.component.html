@@ -1,0 +1,256 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <!-- Main content -->
+    <section class="content">
+   
+       <!-- Default box -->
+       <div class="card card-primary">
+         <div class="card-header ">
+           <h3 class="card-title">Progreso</h3>
+   
+           <div class="card-tools">
+             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+               <i class="fas fa-minus"></i>
+             </button>
+             <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+               <i class="fas fa-times"></i>
+             </button> -->
+           </div>
+         </div>
+
+         <div class="container-fluid">
+            <mat-form-field>
+                <input matInput (keyup)="handleKeyup($event)" placeholder="Buscar">
+              </mat-form-field>    
+         </div>
+    
+         <div class="card-body p-0">
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header [style.width]="getHeaderWidth(column)">{{ getColumnHeader(column) }}</th>
+                    <td mat-cell *matCellDef="let estudiante">
+                    <ng-container [ngSwitch]="column">
+                      <ng-container *ngSwitchCase="'id_tramite'">{{ estudiante.id_tramite }}</ng-container>
+                      <ng-container *ngSwitchCase="'nombre'">
+                        <a>{{ estudiante.nombre }} {{ estudiante.apellido }}</a>
+                        <br />
+                        <small>Created 01.01.2019</small>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'sexo'">
+                        <ul class="list-inline">
+                            <li class="list-inline-item" *ngIf="estudiante.sexo === '1'">
+                              <img alt="Avatar" class="table-avatar rounded-circle" src="../../../assets/icons/avatar5.png" width="40" height="40">
+                            </li>
+                            <li class="list-inline-item" *ngIf="estudiante.sexo === '2'">
+                              <img alt="Avatar" class="table-avatar rounded-circle" src="../../../assets/icons/avatar3.png" width="40" height="40">
+                            </li>
+                          </ul>
+                          
+
+                        
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'nro_hito'">
+                        <div class="progress progress-sm" *ngIf="estudiante.estado === 'Completado'">
+                          <div *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                        </div>
+                        <div class="progress progress-sm"  *ngIf="estudiante.estado === 'Detenido'">
+                            <div *ngIf="estudiante.nro_hito === '2'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                            </div>
+                            <div *ngIf="estudiante.nro_hito === '3'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 48%">
+                            </div>
+                            <div *ngIf="estudiante.nro_hito === '5'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                            </div>
+                            <div *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            </div>
+                        </div>
+                        <div class="progress progress-sm"  *ngIf="estudiante.estado === 'En proceso'">
+                             <div *ngIf="estudiante.nro_hito === '2'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                             </div>
+                             <div *ngIf="estudiante.nro_hito === '3'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 48%">
+                             </div>
+                             <div *ngIf="estudiante.nro_hito === '5'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                             </div>
+                             <div *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                             </div>
+                        </div>
+                        <!-- ... -->
+                        <small *ngIf="estudiante.nro_hito === '2'">32% {{estudiante.estado}}</small>
+                        <small *ngIf="estudiante.nro_hito === '3'">48% {{estudiante.estado}}</small>
+                        <small *ngIf="estudiante.nro_hito === '5'">77% {{estudiante.estado}}</small>
+                        <small *ngIf="estudiante.nro_hito === '6'">100% {{estudiante.estado}}</small>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'estado'">
+                        <span *ngIf="estudiante.estado === 'En proceso'" class="badge badge-primary">En proceso</span>
+                        <span *ngIf="estudiante.estado === 'Detenido'" class="badge badge-danger">Detenido</span>
+                        <span *ngIf="estudiante.estado === 'Completado'" class="badge badge-success">Completado</span>
+                      </ng-container>
+                      <!-- Agrega más casos según sea necesario -->
+                    </ng-container>
+                  </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="acciones">
+                  <th mat-header-cell *matHeaderCellDef [style.width]="'5%'">Acciones</th>
+                  
+
+                  <td mat-cell *matCellDef="let estudiante" class="project-actions text-right">
+                    <a class="btn btn-primary btn-sm" href="#">
+                        <i class="fas fa-folder">
+                        </i>
+                        View
+                    </a>
+                    <!-- <a class="btn btn-info btn-sm" href="#">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="#">
+                        <i class="fas fa-trash">
+                        </i>
+                        Delete
+                    </a> -->
+                </td>
+
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns.concat('acciones')"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns.concat('acciones');"></tr>
+              </table>
+              
+
+           <!-- <table class="table table-striped projects">
+               <thead>
+                   <tr>
+                       <th style="width: 1%">
+                           #
+                       </th>
+                       <th style="width: 20%">
+                           Nombre Completo
+                       </th>
+                       <th style="width: 10%">
+                           Sexo
+                       </th>
+                       <th>
+                           Progreso del tramite
+                       </th>
+                       <th style="width: 8%" class="text-center">
+                           Estado
+                       </th>
+                       <th style="width: 20%">
+                       </th>
+                   </tr>
+               </thead>
+               <tbody>
+    
+                   <tr *ngFor="let estudiante of estudiantes">
+                       <td>
+                           {{estudiante.id_tramite}}
+                       </td>
+                       <td>
+                           <a>
+                               {{ estudiante.nombre }} {{ estudiante.apellido}}
+                           </a>
+                           <br/>
+                           <small>
+                               Created 01.01.2019
+                           </small>
+                       </td>
+                       <td>
+                           <ul class="list-inline">
+                               <li class="list-inline-item" *ngIf="estudiante.sexo === 'Masculino'">
+                                   <img alt="Avatar" class="table-avatar" src="../../../assets/icons/avatar5.png">
+                               </li>
+                               <li class="list-inline-item" *ngIf="estudiante.sexo === 'Femenino'">
+                                   <img alt="Avatar" class="table-avatar" src="../../../assets/icons/avatar3.png">
+                               </li>
+                              
+                           </ul>
+                       </td>
+                       <td class="project_progress">
+                           <div class="progress progress-sm"  *ngIf="estudiante.estado === 'Completado'">
+                               <div  *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                               </div>
+                               
+                           </div>
+                           <div class="progress progress-sm"  *ngIf="estudiante.estado === 'Detenido'">
+                               <div *ngIf="estudiante.nro_hito === '2'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                               </div>
+                               <div *ngIf="estudiante.nro_hito === '3'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 48%">
+                               </div>
+                               <div *ngIf="estudiante.nro_hito === '5'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                               </div>
+                               <div *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-red" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                               </div>
+                           </div>
+                           <div class="progress progress-sm"  *ngIf="estudiante.estado === 'En proceso'">
+                                <div *ngIf="estudiante.nro_hito === '2'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                                </div>
+                                <div *ngIf="estudiante.nro_hito === '3'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 48%">
+                                </div>
+                                <div *ngIf="estudiante.nro_hito === '5'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                                </div>
+                                <div *ngIf="estudiante.nro_hito === '6'" class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                </div>
+                           </div>
+                           <small *ngIf="estudiante.nro_hito === '2'">
+                               32% Complete
+                           </small>
+                           <small *ngIf="estudiante.nro_hito === '3'">
+                               48% Complete
+                           </small>
+                           <small *ngIf="estudiante.nro_hito === '5'">
+                               77% Complete
+                           </small>
+                           <small *ngIf="estudiante.nro_hito === '6'">
+                               100% Complete
+                           </small>
+                       </td>
+                       <td class="project-state" *ngIf="estudiante.estado === 'En proceso'">
+                           <span class="badge badge-primary" >En proceso</span>
+                       </td>
+                       <td class="project-state" *ngIf="estudiante.estado === 'Detenido'">
+                           <span class="badge badge-danger">Detenido</span>
+                       </td>
+                       <td class="project-state" *ngIf="estudiante.estado === 'Completado'">
+                           <span class="badge badge-success">Completado</span>
+                       </td>
+                       <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-folder">
+                            </i>
+                            View
+                        </a>
+                        <a class="btn btn-info btn-sm" href="#">
+                            <i class="fas fa-pencil-alt">
+                            </i>
+                            Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="#">
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                    </td>
+                       
+                   </tr>
+               </tbody>
+           </table> -->
+
+           <mat-paginator [pageSizeOptions]="[5, 15, 25]" showFirstLastButtons></mat-paginator>
+
+
+         </div>
+         <!-- /.card-body -->
+       </div>
+       <!-- /.card -->
+   
+     </section>
+   
+</div>
+
+<app-footer></app-footer>

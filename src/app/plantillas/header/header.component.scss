@@ -1,0 +1,22 @@
+/* Centrar la imagen y ajustar espacio debajo de la imagen */
+.dropdown-menu {
+    .text-center {
+      margin-bottom: 10px; /* Espacio debajo de la imagen */
+      img {
+        margin: 0 auto; /* Centrar la imagen horizontalmente */
+        display: block;
+      }
+    }
+  }
+  
+  /* Estilos adicionales para las opciones */
+  .dropdown-item {
+    text-align: center;
+}
+
+nav{
+  padding-left: 1em;
+  padding-right: 1em;
+
+}
+  

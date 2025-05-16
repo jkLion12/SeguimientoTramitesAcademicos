@@ -1,0 +1,571 @@
+<div class="app">
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper ">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ currentPage }}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/tramites">Trámites</a></li>
+            <li class="breadcrumb-item active">{{ currentPage }}</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  
+    <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">Detalles</h3>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <div class="card-body">
+                      <!-- title row -->
+                      <div class="row">
+                          <div class="col-12">
+                          <h2 class="page-header">
+                              <i class="fas fa-globe"></i> Detalles del trámite.
+                              <small class="float-right" id="fechaHora" ></small>
+                          </h2>
+                          </div>
+                          <!-- /.col -->
+                      </div>
+                      <!-- info row ESTO SE DEBE ARREGLAR LUEGO --> 
+                      <div class="row invoice-info">
+                          <div class="col-sm-4 invoice-col">
+                          <address>
+                              <strong>Datos personales.</strong><br>
+                              <b>Nombre completo: </b>{{datosTramite.nombre}} {{datosTramite.apellido}}<br>
+                              <b>DNI: </b>{{datosTramite.dni}} <br>
+                              <!-- <b>Sexo: </b>{{datosTramite.sexo}} -->
+                              <p *ngIf="datosTramite.sexo === '1'"><b>Sexo: </b>Masculino</p>
+                              <p *ngIf="datosTramite.sexo === '2'"><b>Sexo: </b>Femenino</p>
+
+                          </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                          <b>Datos Académicos</b> 
+                          <address>
+                              <!-- <strong></strong><br> -->
+                              <b>Facultad: </b>{{datosTramite.facultad}}<br>
+                              <b>Escuela: </b>{{datosTramite.escuela}}<br>
+                          </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                          <b>Detalles del trámite</b><br>
+                          <b>Para optar: </b>{{datosTramite.tipo}} <br>
+                          <b>Fecha de registro: </b>{{datosTramite.fechatramite}}<br>
+                          <b>Estado del trámite: </b>{{datosTramite.estado}}<br>
+
+                          </div>
+                          <!-- /.col -->
+                      </div>                       
+                  </div>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+  
+            <div class="col-md-4">
+              <!-- PRODUCT LIST -->
+              <div class="card direct-chat card-success card-outline direct-chat direct-chat-success">
+                <div class="card-header">
+                  <h3 class="card-title">Chat con {{datosTramite.nombre}}</h3>
+
+                  <div class="card-tools">
+                    <span title="3 New Messages" class="badge badge-success">3</span>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                      <i class="fas fa-comments"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- Conversations are loaded here -->
+                  <div class="direct-chat-messages">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">{{datosTramite.nombre}}</span>
+                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="../../../assets/icons/avatar4.png" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Hola, Como va mi tramite?
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-right">Usuario</span>
+                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="../../../assets/icons/avatar3.png" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Esta en Revisión
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+
+                  </div>
+                  <!--/.direct-chat-messages-->
+
+                  
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <!-- <form action="#" method="post"> -->
+                  
+
+                  <div class="input-group">
+                    <!-- <input type="text"  required placeholder="Escriba el mensaje" class="form-control">
+                    <span class="input-group-append">
+                      <button type="submit" class="btn btn-success">Send</button>
+                    </span> -->
+                    <input #miInput type="text" (keyup.enter)="obtenerContenido()" required placeholder="Escriba el mensaje" class="form-control">
+                        <span class="input-group-append">
+                          <button (click)="obtenerContenido()" class="btn btn-success">Send</button>
+                        </span>
+                  </div>
+                  
+                </div>
+                <!-- /.card-footer-->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <div class="card">
+            <div class="card-header border-transparent">
+              <h3 class="card-title">Listado de documentos</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead >
+                    <tr>
+                      <th>Documentos</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <!-- ESTOS SON REQUISITOS PARA BACHILLER -->
+                    <tr>
+                        <td>Fut completo</td>
+                        <td>
+                            <!-- radio -->
+                            <div class="form-group clearfix">
+                              <div class="icheck-success d-inline">
+                                <input type="radio" name="estadoDocumento1" id="radioSuccess1" [ngModel]="radioStates.estadoDocumento1" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento1')">
+                                <label for="radioSuccess1">
+                                </label>
+                              </div>
+                              <div class="icheck-danger d-inline">
+                                <input type="radio" name="estadoDocumento1" id="radioDanger1" [ngModel]="radioStates.estadoDocumento1" value="0" (click)="mostrarObservaciones('0', 'estadoDocumento1')">
+                                <label for="radioDanger1">
+                                </label>
+                              </div>
+                            </div>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Constancia de Egresado (SSAA actualizado)</td>
+                        <td>
+
+                            <!-- radio -->
+                            <div class="form-group clearfix">
+                              <div class="icheck-success d-inline">
+                                <input type="radio" id="radioSuccess2" name="estadoDocumento2" [ngModel]="radioStates.estadoDocumento2" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento2')">
+                                <label for="radioSuccess2">
+                                </label>
+                              </div>
+                              <div class="icheck-danger d-inline">
+                                <input type="radio" id="radioDanger2"  name="estadoDocumento2" [ngModel]="radioStates.estadoDocumento2" value="0" (click)="mostrarObservaciones('0', 'estadoDocumento2')">
+                                <label for="radioDanger2">
+                                </label>
+                              </div>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Constancia de Matrícula (SSAA actualizado)</td>
+                        <td>
+
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess3" name="estadoDocumento9" [ngModel]="radioStates.estadoDocumento9" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento9')">
+                              <label for="radioSuccess3">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger3" name="estadoDocumento9" [ngModel]="radioStates.estadoDocumento9" value="0" (click)="mostrarObservaciones('0', 'estadoDocumento9')" >
+                              <label for="radioDanger3">
+                              </label>
+                            </div>
+                          </div>
+                    
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Certificado de Estudios originales (SSAA actualizado)</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess4" name="estadoDocumento10" [ngModel]="radioStates.estadoDocumento10" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento10')">
+                              <label for="radioSuccess4">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger4" name="estadoDocumento10" [ngModel]="radioStates.estadoDocumento10" value="0" (click)="mostrarObservaciones('0', 'estadoDocumento10')" >
+                              <label for="radioDanger4">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+        
+                      <tr>
+                          <td>Constancia de NO ADEUDAR libros de la universidad</td>
+                          <td>
+
+                            
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess5" name="estadoDocumento3" [ngModel]="radioStates.estadoDocumento3" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento3')">
+                              <label for="radioSuccess5">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger5"  name="estadoDocumento3" [ngModel]="radioStates.estadoDocumento3" value="0" (click)="mostrarObservaciones('0', 'estadoDocumento3')">
+                              <label for="radioDanger5">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>Constancia de NO ADEUDAR por la dirección de la Escuela Profesional</td>
+                          <td>
+
+                            
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess6" name="estadoDocumento4" [ngModel]="radioStates.estadoDocumento4" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento4')">
+                              <label for="radioSuccess6">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger6" name="estadoDocumento4" [ngModel]="radioStates.estadoDocumento4"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento4')">
+                              <label for="radioDanger6">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>03 fotografías, tamaño pasaporte a color fondo blanco terno Azul/blusa blanco (si retoques ni joyas)</td>
+                          <td>
+
+                            
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess7" name="estadoDocumento5" [ngModel]="radioStates.estadoDocumento5"  value="1" [(ngModel)]="estado" (click)="mostrarObservaciones('1', 'estadoDocumento5')">
+                              <label for="radioSuccess7">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger7" name="estadoDocumento5" [ngModel]="radioStates.estadoDocumento5"  value="0" [(ngModel)]="estado" (click)="mostrarObservaciones('0', 'estadoDocumento5')" >
+                              <label for="radioDanger7">
+                              </label>
+                            </div>
+                          </div>                            
+                        </td>
+                      </tr>
+                      <tr >
+                          <td>Copia legalizada de DNI (Notario Público)</td>
+                          <td>
+
+                            
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess8" name="estadoDocumento6" [ngModel]="radioStates.estadoDocumento6"  value="1" (click)="mostrarObservaciones('1', 'estadoDocumento6')">
+                              <label for="radioSuccess8">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger8" name="estadoDocumento6" [ngModel]="radioStates.estadoDocumento6"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento6')" >
+                              <label for="radioDanger8">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>Partida de Nacimiento Original (año fiscal)</td>
+                          <td>
+
+                            
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess9" name="estadoDocumento7" [ngModel]="radioStates.estadoDocumento7" value="1" (click)="mostrarObservaciones('1', 'estadoDocumento7')">
+                              <label for="radioSuccess9">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger9" name="estadoDocumento7" [ngModel]="radioStates.estadoDocumento7"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento7')" >
+                              <label for="radioDanger9">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr *ngIf="TipoTramite === 'Bachiller'">
+                        <td>Comprobante de pago por derecho de graduación Otorgado del Grado Academico de Bachiller</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess10" name="estadoDocumento8" [ngModel]="radioStates.estadoDocumento8"   value="1" (click)="mostrarObservaciones('1', 'estadoDocumento8')">
+                              <label for="radioSuccess10">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger10"  name="estadoDocumento8" [ngModel]="radioStates.estadoDocumento8"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento8')">
+                              <label for="radioDanger10">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- ESTOS SON REQUISITOS DE TITULO -->
+                      <tr *ngIf="TipoTramite === 'Titulo'">
+                        <td>Comprobante de pago por derecho de Titulación</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess11" name="estadoDocumento11" [ngModel]="radioStates.estadoDocumento11"  value="1"(click)="mostrarObservaciones('1', 'estadoDocumento11')">
+                              <label for="radioSuccess11">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger11"  name="estadoDocumento11" [ngModel]="radioStates.estadoDocumento11"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento11')">
+                              <label for="radioDanger11">
+                              </label>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+        
+                      <tr *ngIf="TipoTramite === 'Titulo'">
+                        <td>Copia fedatada de secretaria general del Certificado de idiomas de la (UNAMBA)</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess12" name="estadoDocumento12" [ngModel]="radioStates.estadoDocumento12"   value="1" (click)="mostrarObservaciones('1', 'estadoDocumento12')">
+                              <label for="radioSuccess12">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger12"  name="estadoDocumento12" [ngModel]="radioStates.estadoDocumento12"   value="0" (click)="mostrarObservaciones('0', 'estadoDocumento12')">
+                              <label for="radioDanger12">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+        
+                      <tr *ngIf="TipoTramite === 'Titulo'">
+                        <td>Resolución de Consejo de Facultad de Sustentación de Tesis y Acia (fedatado por el Scre. General de la UNAMBA)</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess13" name="estadoDocumento13" [ngModel]="radioStates.estadoDocumento13"  value="1" (click)="mostrarObservaciones('1', 'estadoDocumento13')">
+                              <label for="radioSuccess13">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger13" name="estadoDocumento13" [ngModel]="radioStates.estadoDocumento13"   value="0" (click)="mostrarObservaciones('0', 'estadoDocumento13')" >
+                              <label for="radioDanger13">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+        
+                      <tr *ngIf="TipoTramite === 'Titulo'">
+                        <td>Constancia emitida por la Unidad de Investigación de la Facultad (rigurar conformidad de entrega de empastados)</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess14" name="estadoDocumento14" [ngModel]="radioStates.estadoDocumento14"  value="1" (click)="mostrarObservaciones('1', 'estadoDocumento14')">
+                              <label for="radioSuccess14">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger14" name="estadoDocumento14" [ngModel]="radioStates.estadoDocumento14"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento14')" >
+                              <label for="radioDanger14">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+        
+                      <tr *ngIf="TipoTramite === 'Titulo'">
+                        <td>Constancia emitida por la Biblioteca central (conformidad de entrega de requisitos Aplicativo Web "Repositorio")</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess15" name="estadoDocumento15" [ngModel]="radioStates.estadoDocumento15"  value="1" (click)="mostrarObservaciones('1', 'estadoDocumento15')">
+                              <label for="radioSuccess15">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger15" name="estadoDocumento15" [ngModel]="radioStates.estadoDocumento15"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento15')" >
+                              <label for="radioDanger15">
+                              </label>
+                            </div>
+                          </div>                    
+                        </td>
+                      </tr>
+        
+                      <tr >
+                        <td>CD con los Documentos Requeridos</td>
+                        <td>
+
+                          
+                          <!-- radio -->
+                          <div class="form-group clearfix">
+                            <div class="icheck-success d-inline">
+                              <input type="radio" id="radioSuccess16" name="estadoDocumento16" [ngModel]="radioStates.estadoDocumento16"   value="1" (click)="mostrarObservaciones('1', 'estadoDocumento16')">
+                              <label for="radioSuccess16">
+                              </label>
+                            </div>
+                            <div class="icheck-danger d-inline">
+                              <input type="radio" id="radioDanger16" name="estadoDocumento16" [ngModel]="radioStates.estadoDocumento16"  value="0" (click)="mostrarObservaciones('0', 'estadoDocumento16')" >
+                              <label for="radioDanger16">
+                              </label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+        
+                  
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <form [formGroup]="observacionForm" (ngSubmit)="postForm(observacionForm.value)"> 
+
+            
+                <button  class="btn btn-sm btn-warning float-left" (click)="regresar()">Regresar</button>
+                <button type="submit" class="btn btn-sm btn-success float-right" >Registar</button>
+    
+                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a> -->
+                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a> -->
+              </form>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+
+        </div><!--/. container-fluid -->
+
+
+
+
+
+    </section>
+
+
+
+    
+
+</div>
+<app-footer></app-footer>
+</div>

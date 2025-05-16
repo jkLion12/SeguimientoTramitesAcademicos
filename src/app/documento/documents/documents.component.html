@@ -1,0 +1,264 @@
+<div class="app">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+        <div class="content-wrapper ">
+          <section class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h1>{{ currentPage }}</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/tramites">Trámites</a></li>
+                    <li class="breadcrumb-item active">{{ currentPage }}</li>
+                  </ol>
+                </div>
+              </div>
+            </div><!-- /.container-fluid -->
+          </section>
+            <!-- <div class="head">
+                <p>
+                    <i class="nav-icon icon fas fa-file-alt"></i>Descarga de Dictamen y Carta 
+                </p>
+            </div> -->
+
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header border-transparent">
+                      <h3 class="card-title"> <i class="nav-icon icon fas fa-file-alt"></i> Documentos</h3>
+      
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus text-white"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                          <i class="fas fa-times text-white"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="container">
+                            <div class="left" *ngIf="tipo === 'Bachiller'" (click)="mostrarDictamen('rojo')" [ngClass]="{ 'focused': isLeftFocused }">
+                                <div>
+                                    <h5>Ver dictamen</h5>
+                                    <img src="./assets/icons/lista.png" alt="Image 1" class="image">
+                                </div>
+                            </div>
+                            <div class="left" *ngIf="tipo === 'Titulo'" (click)="mostrarDictamenTitulo('rojo')" [ngClass]="{ 'focused': isLeftFocused }">
+                                <div>
+                                    <h5>Ver dictamen</h5>
+                                    <img src="./assets/icons/lista.png" alt="Image 1" class="image">
+                                </div>
+                            </div>
+                            <div class="right" (click)="mostrarCarta('carta')"  [ngClass]="{ 'focused': isRightFocused }">
+                                <div>
+                                    <h5>Ver carta</h5>
+                                    <img src="./assets/icons/lista.png" alt="Image 2" class="image">
+                                </div>
+                            </div>
+                        </div>
+                      <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <button  type="button" class="btn btn-sm btn-success float-left" data-bs-toggle="modal" data-bs-target="#plan">
+                            Seleccionar Plan de Estudio
+                        </button>
+                        <button  type="button" class="btn ml-2 btn-sm btn-success float-left" (click)="getDocumento(id_dictamen)" data-bs-toggle="modal" data-bs-target="#documents">
+                            Registrar Documentos
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary float-right" data-bs-toggle="modal" data-bs-target="#carta">
+                            Registrar N° de la carta
+                        </button>
+                      <!-- <a class="btn btn-sm btn-info float-left">Registrar Cursos</a> -->
+                      <!-- <a class="btn btn-sm btn-secondary float-right">Registrar N° de la carta</a> -->
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+            </div>
+
+            <button  class="ml-2 btn btn-sm btn-warning float-left" (click)="regresar()">
+              <i class="fas fa-arrow-left"></i> Regresar
+            </button>
+            <!-- ESTO ES PARA AGREGAR NUEVO NUMERO DE CARTA -->
+            <!-- <div class="content " *ngIf="estado === 'carta' && nro_carta === ''">
+                <div *ngIf="nro_carta === ''" class="input-group mb-3 carta">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Ingrese el numero de la carta" [(ngModel)]="nroCarta" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">-2023-UGT-DFI-UNAMBA</span>
+                    <button type="button" (click)="putCarta()" class="btn btn-success">Guardar</button>
+                </div>
+            </div> -->
+
+            <!-- AQUI SE MUESTRAN LOS DOCUMENTOS -->
+            <div class="contenedor">
+                <!-- AQUI IRAN LOS DOCUMENTOS DE DISCTAMEN -->
+                <div *ngIf="estado === 'rojo' && tipo === 'Bachiller'  && id_plan_estudio !== '0'">
+
+                    <iframe *ngIf="pdfUrlRojo" [src]="pdfUrlRojo" width="100%" height="100%" ></iframe>
+
+                </div>
+                <div *ngIf="estado === 'rojo' && tipo === 'Titulo'   && id_plan_estudio !== '0' ">
+
+                    <iframe *ngIf="pdfUrlRojo" [src]="pdfUrlRojo" width="100%" height="100%" ></iframe>
+
+                </div>
+                <!-- AQUI IRAN LOS DOCUMENTOS DE carta -->
+
+                
+                <div *ngIf="nro_carta !== '' && estado === 'carta'">
+
+                    <div class="carta">
+                        <iframe *ngIf="pdfUrlAzul" [src]="pdfUrlAzul" width="100%" height="100%" ></iframe>
+                    </div>
+        
+                </div>
+
+
+            </div>
+<!-- 
+            <div *ngIf="nro_carta === '' && estado === 'carta'">
+
+                <H3>POR FAVOR REGISTRA EL NUMERO DE CARTA</H3>
+
+            </div> -->
+
+            <!-- AQUI VAN LOS MODALS  -->
+            <!-- Button trigger modal -->
+
+            
+              
+            <div class="modal fade" id="plan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Selecciona el plan de estudio</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label>Planes de estudio</label>
+                        <select class="form-control select2bs4" (click)="obtenerValorSeleccionado()" style="width: 100%;" [(ngModel)]="selectedPlan">
+                          <!-- <option selected>{{nombre_plan_estudio}}</option> -->
+
+                          <option *ngFor="let plan of dataPlan_estudio" [value]="plan.id_plan_estudio">{{plan.nombre}}</option>
+                          <!-- <option>California</option>
+                          <option>Delaware</option>
+                          <option>Tennessee</option>
+                          <option>Texas</option>
+                          <option>Washington</option> -->
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success" (click)="putDictamen()">Guardar</button>    
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+            <!-- Modal para registrar numero de carta -->
+            <div class="modal fade" id="carta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Ingresa el numero de carta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Ingrese el numero de la carta" [(ngModel)]="nroCarta" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2">-2023-UGT-DFI-UNAMBA</span> -->
+
+                        <div class="mb-3">
+                            <label for="nroCarta" class="form-label">Número de carta</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" id="nroCarta" placeholder="Ingrese el número de la carta" [(ngModel)]="nroCarta">
+                              <span class="input-group-text" id="basic-addon2">-{{anioActual}}-UGT-DFI-UNAMBA</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" (click)="putCarta()" class="btn btn-success">Guardar</button>    
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="documents" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Registra de documentos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="mb-3 row">
+                        <div class="col-sm-5">
+                          <textarea class="form-control" *ngIf="estado_edit === 'nuevo'" [(ngModel)]="nombre_documento" placeholder="Nombre del Documento" id="nombre_documento"></textarea>
+                          <textarea class="form-control" *ngIf="estado_edit === 'editar'" [(ngModel)]="nombre_documento_edit" placeholder="Nombre del Documento" id="nombre_documento"></textarea>
+
+                          <!-- <input type="text" class="form-control" id="nombreCurso" placeholder="Nombre del Documento"> -->
+                        </div>
+                        <!-- <div class="col-sm-4">
+                          <input type="text" class="form-control"  placeholder="Descripcion">
+                        </div> -->
+
+                        <div class="col-sm-5">
+                          <textarea *ngIf="estado_edit === 'nuevo'" class="form-control" [(ngModel)]="descripcion"   placeholder="Descripción" id="descripcion"></textarea>
+                          <textarea *ngIf="estado_edit === 'editar'" class="form-control" [(ngModel)]="descripcion_edit"   placeholder="Descripción" id="descripcion"></textarea>
+                        </div>
+
+                        <!-- <div class="col-sm-2">
+                          <input type="number" class="form-control" id="nota" placeholder="id">
+                        </div> -->
+                        <div class="col-sm-2">
+                          <button type="button" *ngIf="estado_edit === 'nuevo'" (click)="postDocumento(id_dictamen)" class="btn btn-success">Agregar</button>
+                          <button type="button" *ngIf="estado_edit === 'editar'" (click)="putDocumento()" class="btn btn-primary">editar</button>
+                          <button type="button" *ngIf="estado_edit === 'editar'" (click)="cambiarEstado()" class="btn btn-danger">cancelar</button>
+                        </div>
+                      </div>
+                          
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th  scope="col" class="col-md-5">Nombre del Documento</th>
+                          <th scope="col" class="col-md-5">Descripción</th>
+                          <th scope="col" class="col-md-2">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of dataDocuments">
+                          <td >{{data.nombre}}</td>
+                          <td>{{data.descripcion}}</td>
+                          <td>
+                            
+                          <button type="button" (click)="traerDocumento(data.id,data.nombre,data.descripcion,'editar')" class="btn btn-primary btn-sm mx-1">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button (click)="deleteDocumento(data.id)" type="button" class="btn btn-danger btn-sm mx-1">
+                              <i class="fas fa-trash-alt"></i>
+                          </button>
+                          
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <label>Cantidad de documentos:</label> 
+
+                  </div>
+                </div>
+              </div>
+            </div>           
+            
+
+        </div>
+        
+    <app-footer></app-footer>
+</div>

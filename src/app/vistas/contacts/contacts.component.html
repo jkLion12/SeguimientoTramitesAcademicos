@@ -1,0 +1,177 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <section class="content">
+
+
+  
+        <div class="card">
+          <div class="card-header bg-success border-transparent">
+            <h3 class="card-title">Contacto de estudiantes</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus text-light"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times text-light"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <!-- Default box -->
+            <div class="card card-solid">
+              <div class="card-body pb-0">
+
+                <div class="search-bar">
+                  <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar" (input)="searchContacts()" class="form-control search-input">
+                </div>
+                
+
+                <div class="row" > 
+                  <div *ngFor="let dato of pagedDatos" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column  ">
+                    <div class="card card-primary d-flex flex-fill ">
+                      <div class="card-header  text-light border-bottom-0">
+                        Contacto
+                      </div>
+                      <div class="card-body pt-0">
+                        <div class="row">
+                          <div class="col-7">
+                            <h2 class="lead"><b>{{dato.nombre}}</b></h2>
+                            <p class="text-muted text-sm"><b>Apellido: </b> {{dato.apellido}} </p>
+                            <p class="text-muted text-sm"><b>Dirección: </b> {{dato.direccion}} </p>
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                              <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> DNI: {{dato.dni}}</li>
+                              <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Cel.: +51 {{dato.nrocelular}}</li>
+                            </ul>
+                          </div>
+                          <div class="col-5 text-center">
+                            <img *ngIf="dato.sexo === '1'" src="../../../assets/icons/avatar4.png" alt="user-avatar" class="img-circle img-fluid">
+                            <img *ngIf="dato.sexo === '2'" src="../../../assets/icons/avatar2.png" alt="user-avatar" class="img-circle img-fluid">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="text-right">
+                          <a href="#" (click)="getDatosEstudiante(dato.nombre,dato.nrocelular)" class="btn btn-sm bg-teal" data-bs-toggle="modal" data-bs-target="#chat">
+                            <i class="fas fa-comments"></i>
+                          </a>
+                          <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fas fa-user"></i> View Profile
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.card-body -->
+          <div class="">
+            <mat-paginator [pageSizeOptions]="[3, 10, 25]" [pageSize]="pageSize" [length]="filteredDatos.length" (page)="pageChanged($event)" showFirstLastButtons></mat-paginator>
+          </div>
+          <!-- /.card-footer -->
+        </div>
+
+    </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="chat" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">CHAT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div> -->
+              <div class="modal-body">
+                <!-- Formulario -->
+                               <!-- PRODUCT LIST -->
+                  <div class="card direct-chat card-success card-outline direct-chat direct-chat-success">
+                    <div class="card-header">
+                      <h3 class="card-title">Chat con {{nombre}}</h3>
+
+                      <div class="card-tools">
+                        <span title="3 New Messages" class="badge badge-success">3</span>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                          <i class="fas fa-comments"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-bs-dismiss="modal" aria-label="Close">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <!-- Conversations are loaded here -->
+                      <div class="direct-chat-messages">
+                        <!-- Message. Default to the left -->
+                        <div class="direct-chat-msg">
+                          <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-left">{{nombre}}</span>
+                            <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                          </div>
+                          <!-- /.direct-chat-infos -->
+                          <img class="direct-chat-img" src="../../../assets/icons/avatar4.png" alt="message user image">
+                          <!-- /.direct-chat-img -->
+                          <div class="direct-chat-text">
+                            Hola, Como va mi tramite?
+                          </div>
+                          <!-- /.direct-chat-text -->
+                        </div>
+                        <!-- /.direct-chat-msg -->
+
+                        <!-- Message to the right -->
+                        <div class="direct-chat-msg right">
+                          <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-right">Usuario</span>
+                            <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                          </div>
+                          <!-- /.direct-chat-infos -->
+                          <img class="direct-chat-img" src="../../../assets/icons/avatar3.png" alt="message user image">
+                          <!-- /.direct-chat-img -->
+                          <div class="direct-chat-text">
+                            Aun esta en proceso
+                          </div>
+                          <!-- /.direct-chat-text -->
+                        </div>
+                        <!-- /.direct-chat-msg -->
+                      </div>
+                      <!--/.direct-chat-messages-->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <!-- <form action="#" method="post"> -->
+                        <!-- AQUI PONDRE LO NECESARIO PARA MANDAR MENSAJES -->
+                      <div class="input-group">
+                        <!-- <input #miInput type="text" required placeholder="Escriba el mensaje" class="form-control">
+                        <button (click)="obtenerContenido()">Obtener Contenido</button> -->
+                        <input #miInput type="text" (keyup.enter)="obtenerContenido()" required placeholder="Escriba el mensaje" class="form-control">
+                        <span class="input-group-append">
+                          <button (click)="obtenerContenido()" class="btn btn-success">Send</button>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- /.card-footer-->
+                  </div>
+              <!-- /.card -->
+                <!-- Fin del formulario -->
+              </div>
+              <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+</div>
+<app-footer></app-footer>

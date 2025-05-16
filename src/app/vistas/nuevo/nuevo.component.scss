@@ -1,0 +1,41 @@
+.invoice{
+    padding: 1em;
+}
+
+.img-container {
+    text-align: center; /* Alinea horizontalmente */
+  }
+  
+  .img-container img {
+    display: block; /* Convierte la imagen en un bloque */
+    margin: 0 auto; /* Alinea automáticamente horizontalmente */
+    max-width: 100%; /* Para asegurar que la imagen no sea más ancha que su contenedor */
+  }
+
+  .tilt-animation {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    animation: tiltAndScale 2s infinite ease-in-out; /* Agrega la animación de escala */
+}
+  
+
+@keyframes tiltAndScale {
+    0% {
+      transform: rotate(0deg) scale(1); /* Sin inclinación ni escala al principio */
+    }
+    25% {
+      transform: rotate(15deg) scale(1.2); /* Inclinación hacia la derecha y escala al 120% */
+    }
+    50% {
+      transform: rotate(-15deg) scale(1.2); /* Inclinación hacia la izquierda y escala al 120% */
+    }
+    75% {
+      transform: rotate(15deg) scale(1.2); /* Inclinación hacia la derecha y escala al 120% */
+    }
+    100% {
+      transform: rotate(0deg) scale(1); /* Sin inclinación ni escala al final */
+    }
+  }  

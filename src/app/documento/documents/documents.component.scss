@@ -1,0 +1,162 @@
+.card{
+        border: 1px solid #9bb8ed; /* Opcional: borde alrededor del contenido */
+    box-shadow: 2px 5px 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+
+}
+.card-header{
+    background-color: #28AECE; /* Cambia el color a tu preferencia */
+
+}
+
+.card-header h3 {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    color: white;
+    // padding: 0.5em;
+    font-weight: bold; /* Aplica negrita al texto dentro de .head */
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px; /* Altura de ejemplo */
+    // background-color: rgb(250, 250, 250);
+    // border: 1px solid #9bb8ed; /* Opcional: borde alrededor del contenido */
+    // box-shadow: 2px 5px 5px 5px rgba(0, 0, 0, 0.3);
+    // box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+
+    margin: 2em;
+
+     width: 80%;
+    // background-color: lightgray;
+    padding: 5em;
+
+    margin: 0 auto;
+    
+    // width: 50%;
+}
+
+.container > div {
+    flex: 0 1 auto;
+    text-align: center;
+    padding: 10px;
+    // max-width: 200px;
+    // margin: 0 10px; /* Ajusta el margen horizontal entre los divs */
+}
+
+/* Estilos adicionales para el cambio de tamaño al clicar */
+.left.focused, .right.focused {
+    transform: scale(1.08);
+    background-color: #eaeaea8e; /* Color para el div izquierdo */
+}
+
+
+.container .image {
+    width: 50px;
+    height: 50px;
+}
+
+.head {
+    background-color: #28AECE; /* Cambia el color a tu preferencia */
+    margin-left: 2.45em;
+    margin-right: 2.45em;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-bottom: -15.5px;
+
+    width: 80%;
+
+}
+
+
+
+
+
+.icon {
+    font-weight: bold; /* Aplica negrita al texto dentro de .head */
+
+    margin-right: 5px; /* Ajusta el margen entre el icono y el texto */
+}
+
+.left,
+.right {
+    text-align: center; /* Centra el texto */
+    padding: 16px; /* Agrega espacio alrededor del texto */
+    flex: 1; /* Ocupa el espacio disponible en el contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #57bde1;
+    width: 12em;
+    transition: transform 0.3s, cursor 0.3s; /* Aplica una transición suave de 0.3 segundos para el cambio de tamaño y el cursor */
+}
+
+.left:hover,
+.right:hover {
+    cursor: pointer; /* Cambia el cursor a la forma de una mano al pasar por encima */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del elemento al pasar el cursor por encima */
+}
+
+.left h5, .right h5 {
+    font-size: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+}
+
+
+.left {
+    background-color: #ffffff; /* Color para el div izquierdo */
+    margin-right: 10px; /* Espacio entre los divs (derecha) */
+    border: 1px solid #34acf2d4; /* Opcional: borde alrededor del contenido */
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    
+}
+
+.right {
+    background-color: #fffefe; /* Color para el div izquierdo */
+    margin-left: 10px; /* Espacio entre los divs (izquierda) */
+    border: 1px solid #34acf2c6; /* Opcional: borde alrededor del contenido */
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+
+    border-radius: 0.5em;
+
+
+}
+
+////////////////////////////
+
+.content-wrapper{
+    margin-bottom: 1em;
+}
+/* dictamen.component.scss */
+.contenedor {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid #9bb8ed; /* Opcional: borde alrededor del contenido */
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    // position: relative; /* Asegura que los iframes se ajusten correctamente */
+    div{
+        width: 100%;
+        height: 50em;
+    }
+  }
+  
+
+  
+
+
+
+
+//para los pdf

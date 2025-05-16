@@ -1,0 +1,56 @@
+<div id="content">
+
+    <div class="img">
+        <img class="scaled-image"  src="../../../assets/icons/logounamba.png" alt="Mi imagen"  />
+    </div>
+
+    <div class="nom-año">
+        <p>"Año de la Unidad, la Paz y el Desarrollo"</p>
+    </div>
+    <div class="lugar-fecha">
+        <p>Tamburco, <span>26 de octubre del 2023</span></p>
+    </div>
+
+    <div class="num-carta">
+        <h5><u>CARTA N° {{nro_carta}}</u>.</h5>
+    </div>
+
+    <div class="detalle">
+        <p>señor:</p>
+        <p>Mstro felicioano etx nombre del decano</p>
+        <h3 class="oficina">AQUI VA EL NOMBRE DE LA DECANATURA</h3>
+    </div >
+    <div class="presente">
+        <p>presente</p>
+
+    </div>
+    
+    <div class="asunto">
+        <h5><b>ASUNTO</b> </h5>
+
+        <p>: Remito dictamen de Apto y expedito para la obtencion de {{tipo}} </p>
+    </div>
+
+    <div class="ref">
+        <h5><b>Ref.</b></h5>
+        <p>
+            <span class="nombre-dictamen">: DICTAMEN {{nro_dictamen}}</span>
+            <span class="dots">..........................................................................................................................</span>
+        </p>
+    </div>
+    
+    
+    <div class="contenido">
+        <p>Es grato dirigirme a usted, para saludarle cordialmente, y al mismo tiempo remito el dictamen que determina APTA y EXPEDITO para la obtencion de Grado Academico de {{tipo}} en <b class="mayus">{{escuela}}</b>
+            en cumplimiento del reglamento General de Grados y Titulos, aprobado con numero de Resolucion N° 130-2021-CU-UNAMBA, de 
+            fecha 05 de julio del 2021 de la Universidad Nacional Micaela Bastidas de Apurimac; de la egresada <b class="mayus">{{nombre}} {{apellido}}</b>.
+            Sin otro particular, aprovecho la ocacion para renovarle las muestras de mi especial consideracion y estima personal.
+        </p>
+    </div>
+
+    <div class="atentamente">
+        <p>Atentamente;</p>
+    </div>
+
+</div>
+<button (click)="generatePDF()">descargar</button>

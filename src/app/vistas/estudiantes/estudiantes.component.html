@@ -1,0 +1,188 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+  <app-breadcrumbs></app-breadcrumbs>
+
+  <!-- TABLA -->
+    <div class="container mat-elevation-z8 mat-table-responsive">
+      <mat-form-field>
+        <input matInput (keyup)="handleKeyup($event)" placeholder="Buscar">
+      </mat-form-field>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        
+        <!-- Define las columnas aquí usando *ngFor -->
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ getColumnHeader(column) }}</mat-header-cell>
+          <mat-cell *matCellDef="let estudiante">{{ estudiante[column] }}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let estudiante">
+            <button class="mano-cursor btn btn-primary" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar_estudiante"  (click)="getStudent(estudiante.id_estudiante)" >
+              <i class="nav-icon fas fa-edit"></i>
+            </button>
+            <button class="mano-cursor btn btn-warning" mat-icon-button data-bs-toggle="modal" data-bs-target="#detalle_estudiante"  (click)="getStudentDetail(estudiante.id_estudiante)" >
+              <i class="nav-icon fas fa-info-circle"></i>
+            </button>
+          </mat-cell>
+        </ng-container>
+        
+        <!-- Define los encabezados de fila -->
+        <mat-header-row *matHeaderRowDef="displayedColumns.concat('acciones')"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns.concat('acciones');"></mat-row>
+
+        <!-- Define las filas de datos -->
+        <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+      </table>
+      
+      <!-- <mat-paginator [pageSizeOptions]="[3, 10, 25]" showFirstLastButtons></mat-paginator> -->
+      <mat-paginator [pageSizeOptions]="[3, 10, 25]" showFirstLastButtons></mat-paginator>
+
+      
+    </div>
+  <!-- FIN DE LA TABLA  -->
+
+      <!-- modal editar -->
+      <div class="modal fade" id="editar_estudiante" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="staticBackdropLabel">EDITAR ESTUDIANTE</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> 
+            
+            <div class="modal-body">
+              <form [formGroup]="editarForm" (ngSubmit)="putForm(editarForm.value)"> 
+                <div class="row">
+                  <div class="col">
+                    <label for="codigo" class="form-label">Nueva Dirección</label>
+                    <input type="text" class="form-control" formControlName="direccion">
+                  </div>
+
+                  <div class="col">
+                    <label for="usuario" class="form-label">Nuevo numero</label>
+                    <input type="text" class="form-control" formControlName="nrocelular">
+                  </div>
+                </div>
+                
+                
+
+                <div class="text-center">
+                  <div class="row">
+                    <div class="col btn">
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    </div>
+                    
+                    <div class="col btn">
+                      <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <!-- modal detalles -->
+      <div class="modal fade" id="detalle_estudiante" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="staticBackdropLabel">detalles de estudiante</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> 
+            
+            <div class="modal-body">
+              <div class="row">
+              
+                <div class="col-md-5">
+
+                  <!-- Profile Image -->
+                  <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                      <div class="text-center">
+                        <img *ngIf="sexo === 'Masculino'" class="profile-user-img img-fluid img-circle"
+                            src="../../../assets/icons/avatar4.png"
+                            alt="User profile picture">
+                        <img *ngIf="sexo === 'Femenino'" class="profile-user-img img-fluid img-circle"
+                            src="../../../assets/icons/avatar3.png"
+                            alt="User profile picture">
+                      </div>
+      
+                      <h3 class="profile-username text-center">{{nombre}} </h3>
+      
+                      <p class="text-muted text-center">{{apellido}}</p>
+      
+                      <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                          <i class="fas fa-mobile-alt mr-1"></i> <b>Numero</b> <a class="float-right">{{numero}}</a>
+                        </li>
+                        
+                        <li class="list-group-item">
+                          <i class="far fa-address-card mr-1"></i><b>DNI</b> <a class="float-right">{{dni}}</a>
+                        </li>
+                        <li class="list-group-item">
+                          <i class="fas fa-venus-mars mr-1"></i><b>Sexo</b> <a class="float-right">{{sexo}}</a>
+                        </li>
+                      </ul>
+      
+                      <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+    
+                </div>
+
+                <div class="col-md-7">
+                  <!-- About Me Box -->
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Mas información</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <strong><i class="fas fa-university mr-1"></i>Facultad</strong>
+      
+                      <p class="text-muted">{{facultad}}</p>
+      
+                      <hr>
+      
+                      <strong><i class="fas fa-graduation-cap mr-1"></i> Escuela Profesional</strong>
+      
+                      <p class="text-muted">{{escuela}}</p>
+      
+                      <hr>
+      
+                      <strong><i class="fas fa-id-card mr-1"></i> Codigo</strong>
+      
+                      <p class="text-muted">{{codigo}}</p>
+      
+                      <hr>
+      
+                      <strong><i class="far fa-envelope mr-1"></i> Correo</strong>
+      
+                      <p class="text-muted">{{correo}}</p>
+
+                      <hr>
+                      <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección</strong>
+      
+                      <p class="text-muted">{{direccion}}</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+    
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,78 @@
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 order-md-2">
+        <img src="./assets2/images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
+        <!-- <img src="assets/dist/img/puertaunamba.jpg" alt="Image" class="img-fluid"> -->
+
+      </div>
+      <div class="col-md-6 contents">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="mb-4 logo">
+            <!-- <h3>Sign In to <strong>Colorlib</strong></h3>
+            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+            <img class="" src="assets/icons/LogoLogin.png" id="icon" alt="User Icon" />
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+            <div class="form-group first">
+              <label for="username">Username</label>
+              <input type="text" id="login" class="fadeIn second" formControlName="usuario" class="form-control">
+              
+
+            </div>
+            <div class="form-group last mb-4">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="fadeIn third form-control" formControlName="password">
+
+              
+            </div>
+            
+            <div class="d-flex mb-5 align-items-center">
+              <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                <input type="checkbox" checked="checked"/>
+                <div class="control__indicator"></div>
+              </label>
+              <!-- <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>  -->
+            </div>
+
+            <input type="submit" value="Log In" class="btn fadeIn fourth text-white btn-block btn-primary">
+
+                  <!-- Remind Passowrd
+      <div id="formFooter">
+        <a class="underlineHover" href="#">olvidaste tu contraseña?</a>
+      </div> -->
+
+      <!-- Alerta -->
+      <!-- <div class="alert alert-danger" *ngIf="errorStatus">
+        <p>{{ errorMsj }}</p>
+      </div> -->
+          <span class="d-block text-left my-4 text-muted"> Visitanos en:</span>
+                
+          <div class="social-login">
+            <a href="https://web.facebook.com/unamba.apurimac/?locale=es_LA&_rdc=1&_rdr" target="_blank" class="facebook">
+              
+              <span class="icon-facebook mr-3"></span> 
+            </a>
+            <a href="https://www.unamba.edu.pe" class="bg-primary">
+
+              <span class="mr-3 "><img class="" src="assets/icons/loadUNAMBA.png" alt="unamba"target="_blank"  height="26" width="26">
+              </span> 
+            </a>
+            <a href="#" class="google">
+              <span class="icon-google mr-3"></span> 
+            </a>
+          </div>
+            
+          </form>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+

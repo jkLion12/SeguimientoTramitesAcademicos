@@ -1,0 +1,19 @@
+/* Estilos para el buscador */
+.search-bar {
+    margin-bottom: 20px; /* Espaciado inferior para separar del contenido */
+  }
+  
+  .search-input {
+    width: 100%; /* O el ancho deseado */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: none; /* Quita la sombra si es necesario */
+  }
+  
+  .search-input:focus {
+    outline: none; /* Elimina el borde al hacer foco */
+    border-color: #007bff; /* Cambia el color del borde al hacer foco */
+  }
+  

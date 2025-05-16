@@ -1,0 +1,157 @@
+.mano-cursor:hover {
+  cursor: pointer;
+}
+/* Estilo inicial del botón */
+.btn {
+font-size: 16px; /* Tamaño inicial del texto del botón */
+padding: 3px 3px; /* Relleno inicial del botón */
+transition: all 0.3s; /* Agrega una transición suave para cambiar de tamaño */
+}
+
+/* Cambiar el tamaño del botón al pasar el cursor por encima */
+.btn:hover {
+font-size: 15px; /* Nuevo tamaño del texto del botón al pasar el cursor por encima */
+padding: 5px 10px; /* Nuevo relleno del botón al pasar el cursor por encima */
+}
+
+.btn-agregar{
+font-size: 20px; /* Tamaño inicial del texto del botón */
+padding: 5px 10px;
+}
+
+.formulario-container {
+padding: 20px; /* Ajusta el valor según tus necesidades */
+}
+
+.fa-search{
+font-size: 15px; /* Tamaño inicial del texto del botón */
+padding: 5px 10px;
+}
+
+.mat-table-responsive {
+overflow-x: auto;
+}
+/* Aplicar estilos responsivos cuando la tabla sobrepase el contenedor */
+.mat-table-responsive {
+overflow-x: auto;
+display: block;
+white-space: nowrap;
+}
+
+/* Estilo para el desbordamiento de la tabla en modo responsivo */
+.mat-table-responsive table {
+width: 100%;
+min-width: 750px; /* Ancho mínimo de la tabla */
+}
+
+/* Estilo para las celdas de la tabla en modo responsivo */
+.mat-table-responsive mat-cell,
+.mat-table-responsive mat-header-cell {
+box-sizing: border-box;
+padding: 16px;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 200px; /* Ancho máximo de las celdas en modo responsivo */
+}
+
+.mat-table-scrol {
+max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+}
+
+.mat-table-scroll {
+max-height: 400px; /* Define la altura máxima para el scroll vertical */
+overflow-y: auto; /* Agrega un scroll vertical cuando sea necesario */
+}
+
+
+.bg-danger {
+border-radius: 0.6em;
+font-size: 11px;
+padding: 2px;
+font-weight: bold;
+
+// border: 2px solid green; /* Estilo del borde para 'En proceso' */
+}
+
+.bg-primary {
+border-radius: 0.6em;
+font-weight: bold;
+
+font-size: 11px;
+padding: 2px;
+// border: 2px solid red; /* Estilo del borde para 'Detenido' */
+} 
+// CSS DE JACK
+// .mano-cursor:hover {
+//     cursor: pointer;
+//   }
+// /* Estilo inicial del botón */
+// .btn {
+//   font-size: 16px; /* Tamaño inicial del texto del botón */
+//   padding: 3px 3px; /* Relleno inicial del botón */
+//   transition: all 0.3s; /* Agrega una transición suave para cambiar de tamaño */
+// }
+
+// /* Cambiar el tamaño del botón al pasar el cursor por encima */
+// .btn:hover {
+//   font-size: 20px; /* Nuevo tamaño del texto del botón al pasar el cursor por encima */
+//   padding: 5px 10px; /* Nuevo relleno del botón al pasar el cursor por encima */
+// }
+
+// .mat-table-responsive {
+//   overflow-x: auto;
+// }
+// /* Aplicar estilos responsivos cuando la tabla sobrepase el contenedor */
+// .mat-table-responsive {
+//   overflow-x: auto;
+//   display: block;
+//   white-space: nowrap;
+// }
+
+// /* Estilo para el desbordamiento de la tabla en modo responsivo */
+// .mat-table-responsive table {
+//   width: 100%;
+//   min-width: 750px; /* Ancho mínimo de la tabla */
+// }
+
+// /* Estilo para las celdas de la tabla en modo responsivo */
+// .mat-table-responsive mat-cell,
+// .mat-table-responsive mat-header-cell {
+//   box-sizing: border-box;
+//   padding: 16px;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   max-width: 200px; /* Ancho máximo de las celdas en modo responsivo */
+// }
+
+// .mat-table-scrol {
+//   max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+//   overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+// }
+
+// .mat-table-scroll {
+//   max-height: 400px; /* Define la altura máxima para el scroll vertical */
+//   overflow-y: auto; /* Agrega un scroll vertical cuando sea necesario */
+// }
+
+
+// .bg-danger {
+//   border-radius: 0.6em;
+//   font-size: 11px;
+//   padding: 2px;
+//   font-weight: bold;
+
+//   // border: 2px solid green; /* Estilo del borde para 'En proceso' */
+// }
+
+// .bg-primary {
+//   border-radius: 0.6em;
+//   font-weight: bold;
+
+//   font-size: 11px;
+//   padding: 2px;
+//   // border: 2px solid red; /* Estilo del borde para 'Detenido' */
+// }
+
+

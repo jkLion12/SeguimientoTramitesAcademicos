@@ -1,0 +1,99 @@
+@keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Aplica la animación con retrasos diferentes para cada tarjeta */
+  .card1 {
+    animation: floatAnimation 8s infinite 0s; /* No hay retraso para la primera tarjeta */
+  }
+  
+  .card2 {
+    animation: floatAnimation 8s infinite 1s; /* 0.5 segundos de retraso para la segunda tarjeta */
+  }
+  
+  .card3 {
+    animation: floatAnimation 8s infinite 2s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+  .card4 {
+    animation: floatAnimation 8s infinite 3s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+  .card5 {
+    animation: floatAnimation 8s infinite 4s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+  .card6 {
+    animation: floatAnimation 8s infinite 5s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+  .card7 {
+    animation: floatAnimation 8s infinite 6s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+  .card8 {
+    animation: floatAnimation 8s infinite 7s; /* 1 segundo de retraso para la tercera tarjeta */
+  }
+
+//   @keyframes waveAnimation {
+//     0%, 100% {
+//       transform: translateY(0);
+//     }
+//     25% {
+//       transform: translateY(-5px);
+//     }
+//     50% {
+//       transform: translateY(0);
+//     }
+//     75% {
+//       transform: translateY(5px);
+//     }
+//   }
+  
+//   .floating-box {
+//     animation: waveAnimation 2s infinite;
+//   }
+  
+
+// @keyframes waveAnimation {
+//     0% {
+//       transform: translateY(0);
+//     }
+//     100% {
+//       transform: translateY(calc(-50px * cos(calc(2 * 3.14 * var(--x)))));
+//     }
+//   }
+  
+//   .floating-box {
+//     animation: waveAnimation 5s infinite linear;
+//     --x: 0; /* Inicializa la variable --x */
+//   }
+  
+//   /* Ajusta la posición y para que la ola no empiece siempre desde el mismo punto */
+//   @keyframes waveAnimation {
+//     0% {
+//       transform: translateY(0);
+//     }
+//     100% {
+//       transform: translateY(calc(-10px * cos(calc(2 * 3.14 * var(--x)))));
+//     }
+//   }
+  
+//   .floating-box {
+//     animation: waveAnimation 5s infinite linear;
+//     --x: 0; /* Inicializa la variable --x */
+//     animation-play-state: running;
+//   }
+  
+//   /* Aplica diferentes retrasos para que las olas no estén sincronizadas */
+//   .floating-box:nth-child(odd) {
+//     --delay: 0s;
+//   }
+  
+//   .floating-box:nth-child(even) {
+//     --delay: -2.5s;
+//   }
+  

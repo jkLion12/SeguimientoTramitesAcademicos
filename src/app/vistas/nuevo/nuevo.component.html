@@ -1,0 +1,273 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <div class="container">
+        
+        <!-- Agregar campo de entrada para buscar por código -->
+        <!-- <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" [(ngModel)]="codigo" class="form-control" placeholder="Código del estudiante" (keyup.enter)="buscarEstudiante()">
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-block" (click)="buscarEstudiante()">Buscar</button>
+            </div>
+        </div> -->
+
+            <!-- Main content -->
+    <section class="mb-4 content">
+        <form class="row col-mb-3" [formGroup]="buscarForm" >
+            <div class="container-fluid">
+                <h2 class="text-center display-4">Buscar al estudiante</h2>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="input-group">
+                            <input formControlName="codigo" [(ngModel)]="codigo" class="form-control" placeholder="Código del estudiante" (keyup.enter)="buscarEstudiante()" type="search" class="form-control form-control-lg" placeholder="Ingrese el código del estudiante">
+                            <div class="input-group-append">
+                                <button [disabled]="buscarForm.invalid" type="submit" (click)="buscarEstudiante()" class="btn btn-lg btn-default btn-secondary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div *ngIf="buscarForm.get('codigo')?.invalid && (buscarForm.get('codigo')?.dirty || buscarForm.get('codigo')?.touched)">
+                                <div *ngIf="buscarForm.get('codigo')?.errors?.['required']" class="text-danger">El código es requerido.</div>
+                                <div *ngIf="buscarForm.get('codigo')?.errors?.['pattern']" class="text-danger">El código solo puede contener numeros.</div>
+                                <div *ngIf="buscarForm.get('codigo')?.errors?.['minlength']" class="text-danger">El código debe tener al menos 5 caracteres.</div>
+                                <div *ngIf="buscarForm.get('codigo')?.errors?.['maxlength']" class="text-danger">El código no puede tener más de 6 caracteres.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </section>
+  
+
+       
+        <!-- Mostrar los datos del estudiante encontrado -->
+        <ng-container class="container cont-data mt-4" *ngIf="estado === 'true'">
+            <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+
+                
+                  
+                <div class="wrapper">
+                    <!-- Main content -->
+                    <section class="invoice">
+                      
+                        <!-- campo de datos llenados -->
+                        <div id="accordion" class="card card-primary card-outline">
+                            <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                    Estudiante encontrado
+                                    </h4>
+                                </div>
+                            </a>
+                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+                                    <!-- title row -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <h2 class="page-header">
+                                            <i class="fas fa-globe"></i> Datos del estudiante.
+                                            <small class="float-right" id="fechaHora" ></small>
+                                        </h2>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- info row -->
+                                    <div class="row invoice-info">
+                                        <div class="col-sm-4 invoice-col">
+                                        <address>
+                                            <strong>Datos personales.</strong><br>
+                                            <b>DNI: </b>{{estudiante.dni}}<br>
+                                            <b>Nombre Completo: </b>{{estudiante.nombre}} {{estudiante.apellido}} <br>
+                                            <p *ngIf="estudiante.sexo === '1'"><b>Sexo: </b>Masculino</p>
+                                            <p *ngIf="estudiante.sexo === '2'"><b>Sexo: </b>Femenino</p>
+                                        </address>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4 invoice-col">
+                                        <b>Datos Académicos</b> 
+                                        <address>
+                                            <!-- <strong></strong><br> -->
+                                            <b>Escuela: </b>{{estudiante.escuela}} <br>
+                                            <b>Facultad: </b>{{estudiante.facultad}}
+                                        </address>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4 invoice-col">
+                                        <b>Credenciales Académicos</b><br>
+                                        <b>ID: </b>{{estudiante.id_estudiante}}<br>
+                                        <b>Código: </b>{{estudiante.codigo}}<br>
+
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>                       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                  
+                        <!-- Table row -->
+                        <hr size="2" width="100%" color="grey">
+
+                        <!-- campos vacios por llenar -->
+                        <h5>Llenar Datos del Usuario:</h5>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Dirección:</label> 
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" formControlName="direccion" class="form-control" placeholder="Dirección">
+                                    </div>
+                                    
+                                    <!-- <input type="text" formControlName="direccion" class="form-control" > -->
+                                    <div *ngIf="nuevoForm.get('direccion')?.invalid && (nuevoForm.get('direccion')?.dirty || nuevoForm.get('direccion')?.touched)">
+                                        <div *ngIf="nuevoForm.get('direccion')?.errors?.['required']" class="text-danger">La dirección es requerida, av/urb/jr/cll.</div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Nro Celular:</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input type="number" formControlName="nro_celular" class="form-control" data-inputmask='"mask": "(999) 999-999"' data-mask>
+                                    </div>
+
+                                    <!-- <input type="text" formControlName="nro_celular" class="form-control" > -->
+                                    <div *ngIf="nuevoForm.get('nro_celular')?.invalid && (nuevoForm.get('nro_celular')?.dirty || nuevoForm.get('nro_celular')?.touched)">
+                                        <div *ngIf="nuevoForm.get('nro_celular')?.errors?.['required']" class="text-danger">El número de celular  es requerido.</div>
+                                        <div *ngIf="nuevoForm.get('nro_celular')?.errors?.['pattern']" class="text-danger">El número de celular solo puede contener número.</div>
+                                        <div *ngIf="nuevoForm.get('nro_celular')?.errors?.['minlength']" class="text-danger">El número de celular debe tener al menos 9 caracteres.</div>
+                                        <div *ngIf="nuevoForm.get('nro_celular')?.errors?.['maxlength']" class="text-danger">El número de celular no puede tener más de 9 caracteres.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+        
+                        <!-- Agregar campos adicionales -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Código del Trámite (Mesa de partes): </label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-hashtag"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" formControlName="codtramite" class="form-control" placeholder="Código del trámite">
+                                    </div>
+                                    <!-- <input type="text" formControlName="codtramite" class="form-control"> -->
+                                    <div *ngIf="nuevoForm.get('codtramite')?.invalid && (nuevoForm.get('codtramite')?.dirty || nuevoForm.get('codtramite')?.touched)">
+                                        <div *ngIf="nuevoForm.get('codtramite')?.errors?.['required']" class="text-danger">El código de trámite es requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Fecha de Mesa de Partes: </label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-hashtag"></i>
+                                            </span>
+                                        </div>
+                                        <input type="date"  formControlName="fechatramite" class="form-control" >
+                                    </div>
+                                    <!-- <input type="text" formControlName="codtramite" class="form-control"> -->
+                                    <div *ngIf="nuevoForm.get('fechatramite')?.invalid && (nuevoForm.get('fechatramite')?.dirty || nuevoForm.get('fechatramite')?.touched)">
+                                        <div *ngIf="nuevoForm.get('fechatramite')?.errors?.['required']" class="text-danger">La fecha del trámite es requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Tipo:</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+                                        </div>
+                                            <select class="form-select" formControlName="tipo">
+                                                <option value="Bachiller">Bachiller</option> 
+                                                <option value="Titulo">Titulo</option> 
+                                            </select>
+                                        </div>                           
+                                    <!-- <select class="form-select" formControlName="tipo">
+                                        <option value="Bachiller">Bachiller</option> 
+                                        <option value="Titulo">Titulo</option> 
+                                    </select> -->
+                                    <div *ngIf="nuevoForm.get('tipo')?.invalid && (nuevoForm.get('tipo')?.dirty || nuevoForm.get('tipo')?.touched)">
+                                        <div *ngIf="nuevoForm.get('tipo')?.errors?.['required']" class="text-danger">El tipo es requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr size="2" width="100%" color="grey">
+        
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-primary" [disabled]="nuevoForm.invalid" type="submit">Guardar</button>
+                                </div>
+                                <!-- <div class="col">
+                                    <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Cerrar</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                  
+                      
+                      <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                  </div>
+                
+
+            
+            </form>
+        </ng-container>  
+        
+        <ng-container class="container mt-4" *ngIf="estado === 'false'">
+            <div class="wrapper">
+                <section class="invoice">
+                    <div class="img-container">
+                        <img src="../../../assets/icons/llorar.png" alt="" class="tilt-animation" style="width: 200px; height: auto;">
+
+                    </div>
+
+                    <div>
+                        <h5>Lo sentimos, no encontramos al estudiante o este estudiante no existe</h5>
+                    </div>
+
+                </section>
+            </div>
+        </ng-container>  
+
+
+        <button class="btn btn-warning" type="button" (click)="salir()">Salir</button>
+
+    </div>
+    
+    
+    
+    <!-- Agrega aquí cualquier otro contenido relacionado con estudiantes -->
+</div>
+<app-footer></app-footer>

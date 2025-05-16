@@ -1,0 +1,184 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    
+    <!-- Agrega aquí cualquier otro contenido relacionado con estudiantes -->
+
+    <div class="container mat-elevation-z8 mat-table-responsive">
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <button type="button" class="btn btn-success btn-agregar mb-2" (click)="nuevoTramite()"><i class="nav-icon fas fa-plus-circle"></i></button>
+      
+        <!-- Primer input de fecha -->
+        <div class="input-group col-md-3 mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">De:</span>
+            </div>
+            <input type="date" #fechaInicio class="form-control">
+        </div>
+    
+        <!-- Segundo input de fecha -->
+        <div class="input-group col-md-3 mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Hasta:</span>
+            </div>
+            <input type="date" #fechaFin class="form-control">
+        </div>
+    
+        <!-- Botón de filtrar -->
+        <button type="button" class="btn bg-black mb-2" (click)="filtrarDatos(fechaInicio.value, fechaFin.value)"><i class="fas fa-filter mr-1"></i><span>Filtrar</span></button>
+        
+        <button type="button" class="btn bg-blue mb-2" (click)="reestablecerTabla()"><i class="fas fa-undo-alt mr-1"></i><span>Reestablecer</span></button>
+    
+        <!-- Botón de descargar -->
+        <button type="button" class="btn btn-danger mb-2" (click)="exportToExcel()"><i class="fas fa-download mr-1"></i><span>Descargar</span></button>
+    
+        <mat-form-field class="mb-2">
+            <i class="nav-icon fas fa-search"></i>
+            <input matInput (keyup)="handleKeyup($event)" placeholder="Buscar">
+        </mat-form-field>
+    </div>
+    
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        
+        <!-- Define las columnas aquí usando *ngFor -->
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ getColumnHeader(column) }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let tramite">
+            <ng-container *ngIf="column !== 'estado'; else estadoColumn">
+              <span>{{ tramite[column] }}</span>
+            </ng-container>
+            <ng-template #estadoColumn >
+              <span [ngClass]="{'badge bg-primary': tramite.estado === 'En proceso', 'badge bg-danger': tramite.estado === 'Detenido', 'badge badge-success': tramite.estado === 'Completado'}">
+                {{ tramite.estado }}
+              </span>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+        
+
+        
+      
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let tramite">
+            <!-- <button class="mano-cursor btn btn-primary" mat-icon-button (click)="editarTramite(tramite.id_tramite)">
+              <i class="nav-icon fas fa-edit"></i>
+            </button> -->
+            <button class="mano-cursor btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar" mat-icon-button (click)="editarTramite(tramite.id_tramite)">
+              <!-- <button class="mano-cursor btn btn-primary" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar" (click)="getUser(usuarios.ID)"></button> -->
+                <i class="nav-icon fas fa-edit"></i>
+              </button>
+            <!-- <button class="mano-cursor btn btn-danger" mat-icon-button (click)="eliminarTramite(tramite.id_tramite)">
+              <mat-icon>delete</mat-icon>
+            </button> -->
+            <!-- <button class="mano-cursor btn btn-danger" mat-icon-button (click)="verDocs(tramite.id_tramite)" [disabled]="esRevisado(tramite.id_tramite)">
+              <i class="nav-icon fas fa-download"></i>
+            </button> -->
+            <button class="mano-cursor btn btn-warning" mat-icon-button (click)="verDocs(tramite.id_tramite)" [disabled]="esRevisado(tramite.id_tramite)">
+              <i class="nav-icon fas fa-file-alt"></i>
+            </button>
+            <button class="mano-cursor btn btn-secondary" mat-icon-button (click)="revisionTramite(tramite.id_tramite)">
+              <i class="nav-icon fas fa-check"></i>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="confirmar">
+          <mat-header-cell mat-header-cell *matHeaderCellDef>Confirmar Recepción</mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let tramite">
+        
+            <div class="custom-control custom-switch" *ngIf="tramite.estado === 'Completado'">
+              <input (click)="confirmarRecepcion(tramite.id_tramite, tramite.nrocelular)" [disabled]="true"  type="checkbox" class="custom-control-input" [id]="'customSwitch_' + tramite.id_tramite" [checked]="true">
+              <label [for]="'customSwitch_' + tramite.id_tramite" class="custom-control-label"></label>
+            </div>
+        
+            <div class="custom-control custom-switch" *ngIf="tramite.estado !== 'Completado'">
+              <input (click)="confirmarRecepcion(tramite.id_tramite, tramite.nrocelular)" [disabled]="esRevisado(tramite.id_tramite)"  type="checkbox" class="custom-control-input" [id]="'customSwitch_' + tramite.id_tramite" [checked]="false">
+              <label [for]="'customSwitch_' + tramite.id_tramite" class="custom-control-label"></label>
+            </div>
+        
+          </mat-cell>
+        </ng-container>
+        
+        
+
+        
+        <!-- Define los encabezados de fila -->
+        <mat-header-row *matHeaderRowDef="displayedColumns.concat('acciones','confirmar')"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns.concat('acciones', 'confirmar');"></mat-row>
+        
+        <!-- <mat-header-row *matHeaderRowDef="displayedColumns.concat('confirmar')"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns.concat('confirmar');"></mat-row> -->
+
+        <!-- Define las filas de datos -->
+        <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+      </table>
+      
+      <!-- <mat-paginator [pageSizeOptions]="[3, 10, 25]" showFirstLastButtons></mat-paginator> -->
+      <mat-paginator [pageSizeOptions]="[5, 15, 25]" showFirstLastButtons></mat-paginator>
+
+      
+    </div>
+
+    <!-- modal editar -->
+    <div class="modal fade" id="editar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="staticBackdropLabel">EDITAR TRAMITE</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div> 
+          
+          <div class="modal-body">
+              <form [formGroup]="editarForm" (ngSubmit)="putForm(editarForm.value)"> 
+                 
+                  <div class="row">
+                      <div class="col">
+                          <label class="form-label">Código de Trámite:</label>
+                          <input type="text" class="form-control" formControlName="codtramite">
+                      </div>
+
+                      <div class="col">
+                          <label class="form-label">Tipo:</label>
+                          <select class="form-select" formControlName="tipo">
+                          <option value="Bachiller">Bachiller</option> 
+                          <option value="Titulo">Titulo</option> 
+                          </select>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <!-- <div class="col-md-6">
+                      <div class="mb-3">
+                          <label for="codigoEstudiante" class="form-label">Código del Estudiante</label>
+                          <input type="text" class="form-control" id="codigoEstudiante" formControlName="codestudiante">
+                      </div>
+                      </div> -->
+                  </div>
+                  
+                  <hr size="2" width="100%" color="grey">
+                  
+                  <div class="text-center">
+                      <div class="row">
+                          <div class="col btn">
+                              <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" [disabled]="editarForm.invalid">Guardar</button>
+                          </div>
+                          <div class="col btn">
+                              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
+                          </div>
+                      </div>
+                  </div>
+
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

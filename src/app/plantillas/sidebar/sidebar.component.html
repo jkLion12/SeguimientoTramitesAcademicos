@@ -1,0 +1,149 @@
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../../../assets/icons/unamba_logo.png" alt="home" style="width: 30px; height: 35px; margin-left: 11px;">
+      <span class="brand-text font-weight-light"> Grados y Títulos</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="./assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" id="textoAnimado" class="d-block">{{ valorRecibido }}</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-header">HOME</li>
+
+               <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/inicio" class="nav-link">
+                  <!-- <img src="./assets/icons/dashboard.png" alt="home" style="width: 25px; height: 25px;"> -->
+                  <i class="nav-icon fas fa-home vibrate"></i>
+                  <p class="ml-2">Inicio</p>
+                </a>
+              </li>
+               <li class="nav-header">ESTADISTICAS</li>
+
+               <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/dashboard" class="nav-link">
+                  <!-- <img src="./assets/icons/dashboard.png" alt="home" style="width: 25px; height: 25px;"> -->
+                  <i class="nav-icon fas fa-tachometer-alt vibrate"></i>
+                  <p class="ml-2">Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-header">TRÁMITES</li>
+
+              <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/nuevo" class="nav-link" >
+                  <!-- <img src="./assets/icons/nuevo.png" alt="home" style="width: 25px; height: 25px;"> -->
+                  <i class="nav-icon fas fa-plus-circle vibrate"></i>
+                  <p class="ml-2">Nuevo Trámite</p>
+                </a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/tramites" class="nav-link">
+                  <!-- <img src="./assets/icons/lista.png" alt="home" style="width: 25px; height: 25px;">  -->
+                  <i class="nav-icon fas fa-file-alt vibrate"></i>
+                  <p class="ml-2">Trámites Registrados</p>
+                </a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/progreso_tramite" class="nav-link">
+                  <!-- <img src="./assets/icons/lista.png" alt="home" style="width: 25px; height: 25px;">  -->
+                  <i class="nav-icon fas fa-check-circle vibrate"></i>
+                  <p class="ml-2">Progreso del trámite</p>
+                </a>
+              </li>
+
+              <li class="nav-header">ALUMNOS</li>
+
+          <li class="nav-item"  routerLinkActive="active">
+            <a routerLink="/estudiantes" class="nav-link">
+              <!-- <img src="./assets/icons/test.png" alt="home" style="width: 25px; height: 25px;"> -->
+              <i class="nav-icon fas fa-user-graduate vibrate"></i>
+              <p>
+                Alumnos Registrados
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLinkActive="active">
+            <a routerLink="/contacts" class="nav-link">
+              <!-- <img src="./assets/icons/test.png" alt="home" style="width: 25px; height: 25px;"> -->
+              <i class="nav-icon fas fa-address-book vibrate"></i>
+              <p>
+                Contactos
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">USUARIOS</li>
+
+
+          <li class="nav-item"  routerLinkActive="active">
+            <a routerLink="/usuarios" (click)="VerificarAcceso()" class="nav-link">
+              <!-- <img src="../../../assets/icons/usuarios.png" alt="home" style="width: 25px; height: 25px;"> -->
+              <i class="nav-icon fa fa-users vibrate"></i>
+              <p>
+                Todos los Usuarios
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">OPCIONES GENERALES</li>
+
+
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/plan_estudio" class="nav-link">
+              <!-- <img src="../../../assets/icons/usuarios.png" alt="home" style="width: 25px; height: 25px;"> -->
+              <i class="nav-icon fa fa-book-open vibrate"></i>
+              <p>
+                Planes de Estudio
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          
+          <!-- <li class="nav-item" *ngIf="userRole === 'Administrador'" routerLinkActive="active">
+            <a routerLink="/nuevousuario" class="nav-link">
+              <i class="nav-icon fas fa-user-plus"></i>
+              <p>
+                Nuevo Usuario
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>

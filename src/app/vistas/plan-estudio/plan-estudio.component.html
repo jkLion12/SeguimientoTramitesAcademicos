@@ -1,0 +1,254 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <app-breadcrumbs></app-breadcrumbs>
+    <!-- Modal para registrar cursos -->
+    <div class="modal fade" id="plan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Registra plan de estudio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+
+          <div class="modal-body">
+            
+              <div class="mb-3 row">
+                <!-- <label for="nombreCurso" class="col-sm-2 col-form-label">Nombre del Curso</label> -->
+                <div class="col-sm-4">
+
+
+                  <label for="">Nombre del plan de estudio</label>
+                  <input type="text" class="form-control"  formControlName="nombre" required placeholder="Nombre">
+                  <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                    <div *ngIf="nombre?.errors?.['required']" class="text-danger">El nombre del plan es requerido.</div>
+                    <div *ngIf="nombre?.errors?.['minlength']" class="text-danger">menos 6 caracteres.</div>
+                    <div *ngIf="nombre?.errors?.['maxlength']" class="text-danger">no más de 6 caracteres.</div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <label for="">Escuela</label>
+                  <select class="form-select form-select-sm" formControlName="id_escuela" aria-label=".form-select-sm example">
+                      <option selected></option>
+                      <option value="1">Ingenieria Informatica y Sistemas</option>
+                      <!-- <option value="2">Two</option>
+                      <option value="3">Three</option>-->
+                    </select>     
+                    
+                    <div *ngIf="nuevoForm.get('id_escuela')?.invalid && (nuevoForm.get('id_escuela')?.dirty || nuevoForm.get('id_escuela')?.touched)">
+                      <div *ngIf="nuevoForm.get('id_escuela')?.errors?.['required']" class="text-danger">El estado es requerido.</div>
+                    </div>
+                  </div>
+                <!-- <label for="creditos" class="col-sm-2 col-form-label">Créditos</label> -->
+                <div class="col-sm-2">
+                  <label for="">Fecha</label>
+                  <input type="date" formControlName="fecha" class="form-control"  placeholder="fecha">
+                  <div *ngIf="nuevoForm.get('fecha')?.['invalid'] && (nuevoForm.get('fecha')?.['dirty'] || nuevoForm.get('fecha')?.['touched'])">
+                    <div *ngIf="nuevoForm.get('fecha')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <!-- <label for="nota" class="col-sm-1 col-form-label">Nota</label> -->
+                <div class="col-sm-3">
+                  <label for="">Estudios Generales</label>
+                  <input type="number" class="form-control" formControlName="estudios_generales" placeholder="créditos">
+                  <div *ngIf="nuevoForm.get('estudios_generales')?.invalid && (nuevoForm.get('estudios_generales')?.dirty || nuevoForm.get('estudios_generales')?.touched)">
+                    <div *ngIf="nuevoForm.get('estudios_generales')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <!-- <div class="col-sm-2">
+                  <button type="button" class="btn btn-success">Agregar</button>
+                </div> -->
+              </div>
+              <div class="mb-3 row">
+                <!-- <label for="nombreCurso" class="col-sm-2 col-form-label">Nombre del Curso</label> -->
+                <div class="col-sm-3">
+                  <label for="">Estudios Específicos</label>
+                  <input type="number" class="form-control" formControlName="estudios_esfecificos"  placeholder="créditos">
+                  <div *ngIf="nuevoForm.get('estudios_esfecificos')?.invalid && (nuevoForm.get('estudios_esfecificos')?.dirty || nuevoForm.get('estudios_esfecificos')?.touched)">
+                    <div *ngIf="nuevoForm.get('estudios_esfecificos')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <!-- <label for="creditos" class="col-sm-2 col-form-label">Créditos</label> -->
+                <div class="col-sm-4">
+                  <label for="">Estudios de especialidad</label>
+                  <input type="number" class="form-control" formControlName="estudios_especialidad" placeholder="créditos">
+                  <div *ngIf="nuevoForm.get('estudios_especialidad')?.invalid && (nuevoForm.get('estudios_especialidad')?.dirty || nuevoForm.get('estudios_especialidad')?.touched)">
+                    <div *ngIf="nuevoForm.get('estudios_especialidad')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <!-- <label for="nota" class="col-sm-1 col-form-label">Nota</label> -->
+                <div class="col-sm-3">
+                  <label for="">Practicas profesionales</label>
+                  <input type="text" class="form-control" formControlName="practicas_preprofecionales" placeholder="créditos">
+                  <div *ngIf="nuevoForm.get('practicas_preprofecionales')?.invalid && (nuevoForm.get('practicas_preprofecionales')?.dirty || nuevoForm.get('practicas_preprofecionales')?.touched)">
+                    <div *ngIf="nuevoForm.get('practicas_preprofecionales')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <label for="">Total</label>
+                  <input type="number" formControlName="total" class="form-control"  placeholder="créditos">
+                  <div *ngIf="nuevoForm.get('total')?.invalid && (nuevoForm.get('total')?.dirty || nuevoForm.get('total')?.touched)">
+                    <div *ngIf="nuevoForm.get('total')?.errors?.['required']" class="text-danger">Requerido.</div>
+                  </div>
+                </div>
+                <!-- <div class="col-sm-2">
+                  <button type="button" class="btn btn-success">Agregar</button>
+                </div> -->
+              </div>
+            
+                  
+          </div>
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="nuevoForm.invalid">Guardar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+       <!-- TABLA -->
+    <div class="container mat-elevation-z8 mat-table-responsive">
+        <button type="button" class="btn btn-success btn-agregar" data-bs-toggle="modal" data-bs-target="#plan"><i class="nav-icon fas fa-plus-circle"></i></button>
+
+        <mat-form-field>
+          <input matInput (keyup)="handleKeyup($event)" placeholder="Buscar">
+        </mat-form-field>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+          
+          <!-- Define las columnas aquí usando *ngFor -->
+          <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ getColumnHeader(column) }}</mat-header-cell>
+            <mat-cell *matCellDef="let estudiante">{{ estudiante[column] }}</mat-cell>
+          </ng-container>
+        
+          <ng-container matColumnDef="acciones">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let plan">
+
+              <button class="mano-cursor btn btn-primary" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar" (click)="getPlan(plan.id_plan_estudio)">
+                <i class="nav-icon fas fa-edit"></i>
+              </button>
+              <button class="mano-cursor btn btn-danger" mat-icon-button (click)="eliminarPlan(plan.id_plan_estudio)" >
+                <i class="nav-icon fas fa-trash-alt"></i>
+              </button>
+            </mat-cell>
+          </ng-container>
+          
+          <!-- Define los encabezados de fila -->
+          <mat-header-row *matHeaderRowDef="displayedColumns.concat('acciones')"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns.concat('acciones');"></mat-row>
+  
+          <!-- Define las filas de datos -->
+          <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+        </table>
+        
+        <!-- <mat-paginator [pageSizeOptions]="[3, 10, 25]" showFirstLastButtons></mat-paginator> -->
+        <mat-paginator [pageSizeOptions]="[3, 10, 25]" showFirstLastButtons></mat-paginator>
+  
+        
+      </div>
+    <!-- FIN DE LA TABLA  -->
+
+    <!-- Modal para editar cursos -->
+    <div class="modal fade" id="editar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Editar Plan de Estudio</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="editarForm" (ngSubmit)="putForm(editarForm.value)">
+
+            <div class="modal-body">
+              
+                <div class="mb-3 row">
+                  <!-- <label for="nombreCurso" class="col-sm-2 col-form-label">Nombre del Curso</label> -->
+                  <div class="col-sm-4">
+
+
+                    <label for="">Nombre del plan de estudio</label>
+                    <input type="text" class="form-control" formControlName="nombre" required placeholder="Nombre">
+
+                  </div>
+                  <div class="col-sm-3">
+                    <label for="">Escuela</label>
+                    <select class="form-select form-select-sm" formControlName="id_escuela" aria-label=".form-select-sm example">
+                        <option selected></option>
+                        <option value="1">Ingenieria Informatica y Sistemas</option>
+                        <!-- <option value="2">Two</option>
+                        <option value="3">Three</option>-->
+                      </select>     
+                      
+                    
+                    </div>
+                  <!-- <label for="creditos" class="col-sm-2 col-form-label">Créditos</label> -->
+                  <div class="col-sm-2">
+                    <label for="">Fecha</label>
+                    <input type="date" formControlName="fecha" class="form-control" placeholder="fecha">
+                    
+                  </div>
+                  <!-- <label for="nota" class="col-sm-1 col-form-label">Nota</label> -->
+                  <div class="col-sm-3">
+                    <label for="">Estudios Generales</label>
+                    <input type="number" class="form-control" formControlName="estudios_generales" placeholder="créditos">
+                    
+                  </div>
+                  <!-- <div class="col-sm-2">
+                    <button type="button" class="btn btn-success">Agregar</button>
+                  </div> -->
+                </div>
+                <div class="mb-3 row">
+                  <!-- <label for="nombreCurso" class="col-sm-2 col-form-label">Nombre del Curso</label> -->
+                  <div class="col-sm-3">
+                    <label for="">Estudios Específicos</label>
+                    <input type="number" class="form-control" formControlName="estudios_esfecificos"  placeholder="créditos">
+                    
+                  </div>
+                  <!-- <label for="creditos" class="col-sm-2 col-form-label">Créditos</label> -->
+                  <div class="col-sm-4">
+                    <label for="">Estudios de especialidad</label>
+                    <input type="number" class="form-control" formControlName="estudios_especialidad" placeholder="créditos">
+                    
+                  </div>
+                  <!-- <label for="nota" class="col-sm-1 col-form-label">Nota</label> -->
+                  <div class="col-sm-3">
+                    <label for="">Practicas profesionales</label>
+                    <input type="text" class="form-control" formControlName="practicas_preprofecionales" placeholder="créditos">
+                    
+                  </div>
+                  <div class="col-sm-2">
+                    <label for="">Total</label>
+                    <input type="number" formControlName="total" class="form-control"  placeholder="créditos">
+                    
+                  </div>
+                  <!-- <div class="col-sm-2">
+                    <button type="button" class="btn btn-success">Agregar</button>
+                  </div> -->
+                </div>
+              
+                    
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+   
+   
+   
+   
+   
+   
+   
+   
+
+    </div>
+<app-footer></app-footer>

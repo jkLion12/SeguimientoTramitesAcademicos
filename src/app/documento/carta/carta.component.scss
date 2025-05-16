@@ -1,0 +1,109 @@
+/* carta.component.scss */
+#content {
+    // font-size: 10px;
+    max-width: 50em;
+    // margin: 2em;
+    margin: 2em auto; /* 'auto' para centrar horizontalmente */
+    padding: 5em; /* Margen interior para el contenido */
+    border: 1px solid #000; /* Opcional: borde alrededor del contenido */
+  
+
+}
+
+.img {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    max-width: 100%; /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+.nom-año {
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.lugar-fecha {
+    text-align: right;
+}
+
+.detalle{
+    margin-top: 3em;
+
+    /* Agrega el siguiente estilo para eliminar el margen superior */
+    > * {
+        margin-top: -1em;
+    }
+
+    .oficina{
+        font-weight: bold;
+        margin-top: -0.6em;
+
+    }
+}
+
+.presente{
+
+}
+
+.asunto{
+    display: flex;
+    h3{
+        font-weight: bold;
+    }
+    p{
+        margin-top: 0.5em;
+        margin-left: 8em;
+        text-align: justify; /* Aplica justificación al párrafo */
+
+    }
+}
+/* carta.component.scss */
+.ref {
+    display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
+
+    h4 {
+        font-weight: bold;
+    }
+
+    p {
+        display: flex;
+        flex-direction: column;
+        // margin-top:em;
+    }
+
+    .nombre-dictamen {
+        margin-left: 11em;
+    }
+
+    .dots {
+        margin-top: -0.8em;
+        margin-left: 11em;
+    }
+}
+
+
+/* carta.component.scss */
+.contenido {
+    text-indent: 13em; /* Establece una sangría de 2em (ajusta el valor según tus preferencias) */
+    text-align: justify; /* Aplica justificación al párrafo */
+
+}
+
+.contenido p::first-line {
+    text-indent: 0; /* Elimina la sangría en la primera línea */
+}
+
+
+.atentamente{
+    justify-content: center;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.mayus{
+    text-transform: uppercase;
+
+}
